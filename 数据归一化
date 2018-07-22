@@ -1,0 +1,11 @@
+import numpy as np
+
+def autoNorm(dataset):
+    minVals=dataset.min(0)                      #找到比较小的那一组
+    maxVals=dataset.max(0)                      #找到比较大的那一组
+    ranges=maxVals-minVals                      #分母
+    normDataset=np.zeros(np.shape(dataset))     #创建一个全为0的矩阵
+    m=dataset.shape[0]                          
+    normDataset=dataset-np.tile(minVals,(m,1))
+    normDataset=normDataset/np.tile(ranges,(m,1))
+    return normDataset,ranges,minVals
